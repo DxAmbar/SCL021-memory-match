@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MEMORYMATCH</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-   
+    <h1>Memory Match</h1>
+    <main>
+        <section class="section1">
+            <table>
+                <tr>
+                    <td><button id="0" onclick="uncover(0)">hi</button></td>
+                    <td><button id="1" onclick="uncover(1)">hi</button></td>
+                    <td><button id="2" onclick="uncover(2)">hi</button></td>
+                </tr>
+                <tr>
+                    <td><button id="3" onclick="uncover(3)">hi</button></td>
+                    <td><button id="4" onclick="uncover(4)">hi</button></td>
+                    <td><button id="5" onclick="uncover(5)">hi</button></td>
+                </tr>
+            </table>
+        </section>
+        <section class="section2">
+            <h2 id="hits" class="statistics">Aciertos: 0</h2>
+            <h2 id="tRemaining" class="statistics">Contador: 30 segundos</h2>
+            <h2 id="moves" class="statistics">Movimientos: 0</h2>
+            <h2 id="score" class="statistics">Puntaje: 0</h2>
+        </section>
+    </main>
+    <footer>
+        <p>Este grandioso juego fue creado por ✨ <a href="https://github.com/DxAmbar">Daniela Baeza</a> & <a
+                href="https://github.com/CataGarciaRojas">Catalina García</a> ✨</p>
+    </footer>
 </body>
 </html>
-
-
