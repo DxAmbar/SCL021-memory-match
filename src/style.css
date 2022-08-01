@@ -1,0 +1,40 @@
+body {
+    background-image: url("img/game.png");
+    background-size: auto;
+    text-align: center;
+}
+
+main {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section1 {
+    background-color: rgba(255, 255, 255, 255);
+    padding: 10px 10px 10px 10px;
+    border-radius: 3px;
+}
+
+button {
+    height: 150px;
+    width: 100px;
+
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.section2 {
+    padding-left: 100px;
+}
+
+.statistics {
+    border: 1px solid black;
+    height: 100px;
+    border-radius: 8px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+}
