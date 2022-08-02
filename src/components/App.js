@@ -13,6 +13,8 @@
 //   .then(console.log)
 //   .catch(console.error);
 //
+import pokemon from '../data/pokemon/pokemon.js';
+console.log(pokemon)
 
 const App = () => {
   const el = document.createElement('div');
