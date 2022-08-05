@@ -16,56 +16,56 @@
 import pokemon from '../data/pokemon/pokemon.js';
 console.log(pokemon.items);
 
-const pokemonCards = pokemon.items
+const pokemonCards = pokemon.items 
 
 const App = () => {
 
-const root = document.querySelector('.root')
-let cardsChosen = []
-let cardsChosenId = []
+  const pokemonCard = pokemon.items;  
+  const doubledCards = pokemonCard.concat(pokemonCard);
 
-// primera función
-function createBoard(){
-    for(let i = 0; i<pokemon.items.length; i++){
-      let card = document.createElement('img')
-      card.setAttribute('src', 'img/levels/lvl1/pokelvl1.png')
-      card.setAttribute('data-id', i)
-      card.addEventListener('click', flipCard)
-      root.appendChild(card)
-    }
-}
-// second function
-function flipCard(){
-  let cardId = this.getAttribute('data-id')
-  cardsChosen.push(pokemonCards[cardId].name)
-  cardsChosenId.push(cardId)
-  this.setAttribute('src', pokemonCards[cardId].img)
-}
+  const el = document.createElement('div');
+  el.className = 'App';
+  el.innerHTML = 
+  `<table> <tr> 
+    <td>
+     <p>${pokemon.items[1].id}</p> 
+    <img src="${pokemon.items[1].image}" onclick="hi2()">
+    <img src="${pokemon.items[1].image}">
+    </td>
+  </tr>
+  </table>`;
 
-createBoard()
+  return el;
+
+  /* const root = document.querySelector('.root')
+  let cardsChosen = []
+  let cardsChosenId = []
+  
+  // primera función
+  function createBoard(){
+      for(let i = 0; i<pokemon.items.length; i++){
+        let card = document.createElement('img')
+        card.setAttribute('src', 'img/levels/lvl1/pokelvl1.png')
+        card.setAttribute('data-id', i)
+        card.addEventListener('click', flipCard)
+        root.appendChild(card)
+      }
+  }
+  // second function
+  function flipCard(){
+    let cardId = this.getAttribute('data-id')
+    cardsChosen.push(pokemonCards[cardId].name)
+    cardsChosenId.push(cardId)
+    this.setAttribute('src', pokemonCards[cardId].img)
+  }
+  
+  createBoard()*/
 
 };
 
 export default App
 
-/*const pokemonCard = pokemon.items; 
-const doubledCards = pokemonCard.concat(pokemonCard);
-
-
-  const el = document.createElement('div');
-  el.className = 'App';
-  el.innerHTML = `<table> <tr> 
-  <td>
-   <p>${pokemon.items[0].id}</p> 
-  <img src="${pokemon.items[0].image}">
-  </td>
-</tr>
-</table>`;
-
-  return el;
-
-
-<section class="section1">
+/*<section class="section1">
             <table>
                 <tr>
                 "
