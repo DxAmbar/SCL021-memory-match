@@ -17,73 +17,77 @@
 import pokemon from '../data/pokemon/pokemon.js';
 console.log(pokemon.items);
 
-const App = (items = pokemon.items) => { 
-  const doubledItems = items.concat(items);
+const App = (items = pokemon.items) => { //declaramos valor de items por si la constante no recibe el valor correcto
 
-let i = doubledItems.length, j, temp; //j es un número random que se generará en el loop. temp guarda el valor temporal para hacer los intercambios
-    while(--i > 0){ //el array comienza con la cantidad total de cartas y cada vez va restando 1.
-    j = Math.floor(Math.random() * (i+1))//establecemos valor para j, generamos un número random entre 0 e i
-    temp = doubledItems[j]; // establecemos el temp. llamamos al índice j de nuestro array
-    doubledItems[j] = doubledItems[i];//tomamos el array en su índice random (j) y lo cambiamos por el índice que está en el loop (i)
-    doubledItems[i] = temp; //tomamos el la posición del índice (i)  y le damos el valor de temp.
+ const doubledItems = items.concat(items); //se duplican las cartas de pokemon
+
+//Algoritmo de Fisher-Yates para barajar cartas
+let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en un ciclo y será guardado en temp.
+    while(--i > 0){ //empieza con el total de cartas y va restando una
+    j = Math.floor(Math.random() * (i+1))//j toma un valor y se genera función random entre 0 e i
+    temp = doubledItems[j]; // se establece temp y se llama a j
+    doubledItems[j] = doubledItems[i]; // se toma j y se cambia por i (índice del ciclo)
+    doubledItems[i] = temp; //se toma i para dar un valor temporal temp.
     }
 
-  //Creación de container y sus atributos
+  
+
+    //Container y sus atributos
   const cardContainer = document.createElement('div');
   cardContainer.setAttribute('class', 'container');
   cardContainer.setAttribute('id', 'cardContainer');
   
-  //Creación de cartas y sus atributos
+   //Cartas y sus atributos
   for (let i = 0; i < doubledItems.length; i++) {
     const card = document.createElement('div');
-    let imageFront = document.createElement('img'); 
-    let imageBack = document.createElement('img'); //imagen pokemon//
+    let imageFront = document.createElement('img'); //img pokebola
+    let imageBack = document.createElement('img');  //img pokemon
 
     card.className = 'card';
     cardContainer.appendChild(card);
 
-    imageFront.setAttribute('src','img/levels/lvl1/pokelvl1.png' );
+    imageFront.setAttribute('src','img/levels/lvl1/pokelvl1.png' ); //se selecciona imagen estática de pokebola
     imageFront.setAttribute('class', 'imageFront'); 
     imageFront.setAttribute('alt', 'FrontCard');
     card.appendChild(imageFront);
 
-    imageBack.setAttribute('src', doubledItems[i].image);
+    imageBack.setAttribute('src', doubledItems[i].image); //imagen de pokemon recorriendo el array
     imageBack.setAttribute('class', 'imageBack');
     imageBack.setAttribute('alt', doubledItems[i].id);
     card.setAttribute('id', doubledItems[i].id);
     card.appendChild(imageBack);
 
-    //Darle la clase 'flip' al hacer click, esto hace que las cartas giren 
+
     card.addEventListener('click', (e) => { 
-      card.classList.toggle('flip'); //le damos clase flip
-      checkCards(e); //pasamos el evento
+      card.classList.toggle('flip'); //se indica clase flip
+      checkCards(e); //al hacer click se activa el evento y se giran las cartas
     });
 
    }
-   //Función match
+   //match de cartas
    const checkCards = (e) => {
      console.log(e);
-     const clickedCard = e.target; //al hacer click el evento capturará data, y target va a ser el elemento donde hicimos click
-     clickedCard.classList.add('flipped'); //se le da la clase flipped (sirve para la comparación de las cartas que se giran)
+     const clickedCard = e.target; //el click captura data, la que será el elemento target
+     clickedCard.classList.add('flipped'); //se asigna clase para la comparación de cartas que se giran
      const flippedCards = document.querySelectorAll('.flipped');//llamamos a todos los elementos con clase flipped
      const flip = document.querySelectorAll('.flip'); //llamamos a todos los elementos con la clase flip 
-      if(flippedCards.length === 2){ // si se giran 2 cartas
-       if(flippedCards[0].getAttribute('id') === flippedCards[1].getAttribute('id')){ //comparamos ambos
+      if(flippedCards.length === 2){ //se giran dos cartas
+       if(flippedCards[0].getAttribute('id') === flippedCards[1].getAttribute('id')){ //se comparan las cartas giradas
          console.log('match'); //si son iguales da match
          flippedCards.forEach(card => { //iteramos en el array
            card.classList.remove('flipped'); //quitamos la clase flipped
-           card.style.pointerEvents = 'none'; //evitamos que se le haga click
+           card.style.pointerEvents = 'none'; //se le quita la posibildad de seleccionar
          })
        } else{
          console.log('wrong');
          flippedCards.forEach((card) => { //iteramos en el array
           card.classList.remove('flipped'); //quitamos la clase flipped
-          setTimeout(() => card.classList.remove('flip'), 1000); //quitamos la clase flip (para que se gire de nuevo) y ocurre en 1000 milisegundos
+          setTimeout(() => card.classList.remove('flip'), 1000); //se remueve la clase flip para que se escondan las tarjetas nuevamente
          });
         }
         //Alerta al terminar de jugar
         /*if(flip.length === 6) {
-          alert('📣¡FELICITACIONES! 🏆🎆🥇')
+          alert('¡FELICITACIONES!')
      }*/
     }
    };
