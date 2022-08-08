@@ -39,19 +39,25 @@ let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en 
     doubledItems[i] = temp; //se toma i para dar un valor temporal temp.
     }
   
-
+ let execute = false
 
 function countTime(){
-  countdownTimer = setInterval(() => {
-    showTimer.innerHTML = `Tiempo restante: ${timer} segundos`;
-    timer--;
-    if(timer < 0){
-      clearInterval(tcountdownTime);
-      blockCards(items);
-      //loseAudio.play(); //Audio insertado
-    }
-  }, 1000, timer); 
+  if (execute){
+    return
+  }
+  execute = true;
+    let countdownTimer = setInterval(() => {
+      showTimer.innerHTML = `Tiempo restante: ${timer} segundos`;
+      timer--;
+      if(timer < 0){
+        clearInterval(countdownTimer);
+        //blockCards(items);
+        //loseAudio.play(); //Audio insertado
+      }
+    }, 1000, timer);
+ 
 }
+
 
     //Container y sus atributos
   const cardContainer = document.createElement('div');
@@ -80,6 +86,7 @@ function countTime(){
 
 
     card.addEventListener('click', (e) => { 
+      countTime()
       card.classList.toggle('flip'); //se indica clase flip
       checkCards(e); //al hacer click se activa el evento y se giran las cartas
     });
