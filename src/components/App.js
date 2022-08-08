@@ -18,8 +18,17 @@ import pokemon from '../data/pokemon/pokemon.js';
 console.log(pokemon.items);
 
 const App = (items = pokemon.items) => { //declaramos valor de items por si la constante no recibe el valor correcto
-
- const doubledItems = items.concat(items); //se duplican las cartas de pokemon
+const doubledItems = items.concat(items); //se duplican las cartas de pokemon
+let uncoveredCards = 0;
+let time = false;
+let pairs = 0;
+let initTimer= 30;
+let timer = 30;
+let score = 0;
+let moves = 0;
+let showTimer = document.getElementById('tRemaining');
+let showScore = document.getElementById('score');
+let showMoves = document.getElementById('moves');
 
 //Algoritmo de Fisher-Yates para barajar cartas
 let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en un ciclo y será guardado en temp.
@@ -29,8 +38,20 @@ let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en 
     doubledItems[j] = doubledItems[i]; // se toma j y se cambia por i (índice del ciclo)
     doubledItems[i] = temp; //se toma i para dar un valor temporal temp.
     }
-
   
+
+
+function countTime(){
+  countdownTimer = setInterval(() => {
+    showTimer.innerHTML = `Tiempo restante: ${timer} segundos`;
+    timer--;
+    if(timer < 0){
+      clearInterval(tcountdownTime);
+      blockCards(items);
+      //loseAudio.play(); //Audio insertado
+    }
+  }, 1000, timer); 
+}
 
     //Container y sus atributos
   const cardContainer = document.createElement('div');
@@ -63,7 +84,6 @@ let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en 
       checkCards(e); //al hacer click se activa el evento y se giran las cartas
     });
 
-   }
    //match de cartas
    const checkCards = (e) => {
      console.log(e);
@@ -87,10 +107,11 @@ let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en 
         }
         //Alerta al terminar de jugar
         /*if(flip.length === 6) {
-          alert('¡FELICITACIONES!')
-     }*/
-    }
+          alert('¡FELICITACIONES!')*/
+     }
+
    };
+  }
 
       return cardContainer;
 
