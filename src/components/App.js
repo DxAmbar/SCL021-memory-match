@@ -17,18 +17,20 @@
 import pokemon from '../data/pokemon/pokemon.js';
 console.log(pokemon.items);
 
-const App = (items = pokemon.items) => { //declaramos valor de items por si la constante no recibe el valor correcto
-const doubledItems = items.concat(items); //se duplican las cartas de pokemon
+const App = (items = pokemon.items) => { // Declaramos valor de items por si la constante no recibe el valor correcto
+const doubledItems = items.concat(items); // Se duplican las cartas de pokemon
+
+// Variables  
 let uncoveredCards = 0;
 let time = false;
 let pairs = 0;
 let initTimer= 30;
 let timer = 30;
-let score = 0;
 let moves = 0;
+let hits = 0;
 let showTimer = document.getElementById('tRemaining');
-let showScore = document.getElementById('score');
 let showMoves = document.getElementById('moves');
+let showHits = document.getElementById('hits');
 
 //Algoritmo de Fisher-Yates para barajar cartas
 let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en un ciclo y será guardado en temp.
@@ -38,7 +40,8 @@ let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en 
     doubledItems[j] = doubledItems[i]; // se toma j y se cambia por i (índice del ciclo)
     doubledItems[i] = temp; //se toma i para dar un valor temporal temp.
     }
-  
+    
+// Función timer  
  let execute = false
 
 function countTime(){
@@ -46,7 +49,7 @@ function countTime(){
     return
   }
   execute = true;
-    let countdownTimer = setInterval(() => {
+  function tiempoRestante (){
       showTimer.innerHTML = `Tiempo restante: ${timer} segundos`;
       timer--;
       if(timer < 0){
@@ -54,10 +57,10 @@ function countTime(){
         //blockCards(items);
         //loseAudio.play(); //Audio insertado
       }
-    }, 1000, timer);
- 
+  }
+    tiempoRestante()
+    let countdownTimer = setInterval(tiempoRestante, 1000, timer);
 }
-
 
     //Container y sus atributos
   const cardContainer = document.createElement('div');
@@ -94,6 +97,7 @@ function countTime(){
    //match de cartas
    const checkCards = (e) => {
      console.log(e);
+    
      const clickedCard = e.target; //el click captura data, la que será el elemento target
      clickedCard.classList.add('flipped'); //se asigna clase para la comparación de cartas que se giran
      const flippedCards = document.querySelectorAll('.flipped');//llamamos a todos los elementos con clase flipped
@@ -104,6 +108,8 @@ function countTime(){
          flippedCards.forEach(card => { //iteramos en el array
            card.classList.remove('flipped'); //quitamos la clase flipped
            card.style.pointerEvents = 'none'; //se le quita la posibildad de seleccionar
+           hits++; // Aumento de aciertos
+           showHits.innerHTML = `Aciertos: ${hits/2}`;
          })
        } else{
          console.log('wrong');
@@ -112,6 +118,8 @@ function countTime(){
           setTimeout(() => card.classList.remove('flip'), 1000); //se remueve la clase flip para que se escondan las tarjetas nuevamente
          });
         }
+        moves++;  
+        showMoves.innerHTML = `Movimientos: ${moves}`;
         //Alerta al terminar de jugar
         /*if(flip.length === 6) {
           alert('¡FELICITACIONES!')*/
