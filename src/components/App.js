@@ -17,18 +17,20 @@
 import pokemon from '../data/pokemon/pokemon.js';
 console.log(pokemon.items);
 
-const App = (items = pokemon.items) => { //declaramos valor de items por si la constante no recibe el valor correcto
-  const doubledItems = items.concat(items); //se duplican las cartas de pokemon
+const App = (items = pokemon.items) => { // Declaramos valor de items por si la constante no recibe el valor correcto
+  const doubledItems = items.concat(items); // Se duplican las cartas de pokemon
+
+  // Variables  
   let uncoveredCards = 0;
   let time = false;
   let pairs = 0;
   let initTimer = 30;
   let timer = 30;
-  let score = 0;
   let moves = 0;
+  let hits = 0;
   let showTimer = document.getElementById('tRemaining');
-  let showScore = document.getElementById('score');
   let showMoves = document.getElementById('moves');
+  let showHits = document.getElementById('hits');
 
   //Algoritmo de Fisher-Yates para barajar cartas
   let i = doubledItems.length, j, temp; //j es un n° al azar que se generará en un ciclo y será guardado en temp.
@@ -39,25 +41,37 @@ const App = (items = pokemon.items) => { //declaramos valor de items por si la c
     doubledItems[i] = temp; //se toma i para dar un valor temporal temp.
   }
 
-  let execute = false; // se declara una constante para ejecutar timer 
+  // Función timer  
+  let execute = false
 
-  function countTime() { 
-    if (execute) { // se retorna vacío si es que ya está el timer en curso. Se evita el superposicionamiento de fun. timer
-      return 
+  function countTime() {
+    if (execute) {
+      return
     }
-    execute = true; //se declara true cuando existe el primer click
-    let countdownTimer = setInterval(() => {
+    execute = true;
+    function tRemaining() {
       showTimer.innerHTML = `Tiempo restante: ${timer} segundos`;
-      timer--; //timer reduce segundo a segundo
+      timer--;
       if (timer < 0) {
         clearInterval(countdownTimer);
+        alert('¡Se acabó el tiempo!')
         //blockCards(items);
         //loseAudio.play(); //Audio insertado
       }
-    }, 1000, timer);
+
+    }
+    tRemaining()
+    let countdownTimer = setInterval(tRemaining, 1000, timer);
 
   }
 
+  /*function blockCards(items){
+    for(let i = 0; i<=doubledItems.length; i++){
+      let blockedCard = document.getElementById(i);
+      blockedCard.innerHTML = `<img src=".img/levels/lvl1/pokelvl1.png" alt="">` ; 
+      blockedCard.disabled = true;
+    }
+  }*/
 
   //Container y sus atributos
   const cardContainer = document.createElement('div');
@@ -93,7 +107,7 @@ const App = (items = pokemon.items) => { //declaramos valor de items por si la c
 
     //match de cartas
     const checkCards = (e) => {
-      console.log(e);
+
       const clickedCard = e.target; //el click captura data, la que será el elemento target
       clickedCard.classList.add('flipped'); //se asigna clase para la comparación de cartas que se giran
       const flippedCards = document.querySelectorAll('.flipped');//llamamos a todos los elementos con clase flipped
@@ -104,6 +118,8 @@ const App = (items = pokemon.items) => { //declaramos valor de items por si la c
           flippedCards.forEach(card => { //iteramos en el array
             card.classList.remove('flipped'); //quitamos la clase flipped
             card.style.pointerEvents = 'none'; //se le quita la posibildad de seleccionar
+            hits++; // Aumento de aciertos
+            showHits.innerHTML = `Aciertos: ${hits / 2}`;
           })
         } else {
           console.log('wrong');
@@ -112,9 +128,13 @@ const App = (items = pokemon.items) => { //declaramos valor de items por si la c
             setTimeout(() => card.classList.remove('flip'), 1000); //se remueve la clase flip para que se escondan las tarjetas nuevamente
           });
         }
+        moves++;
+        showMoves.innerHTML = `Movimientos: ${moves}`;
         //Alerta al terminar de jugar
-        /*if(flip.length === 6) {
-          alert('¡FELICITACIONES!')*/
+        if (flip.length === doubledItems.length) {
+          //clearInterval(countdownTimer)
+          alert('¡FELICITACIONES!')
+        }
       }
 
     };
