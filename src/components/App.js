@@ -21,11 +21,12 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
   const doubledItems = items.concat(items); // Se duplican las cartas de pokemon
 
   // Variables  
-  let uncoveredCards = 0;
+  /*let uncoveredCards = 0;
   let time = false;
   let pairs = 0;
-  let initTimer = 30;
+  let initTimer = 30;*/
   let timer = 30;
+  let flag = false;
   let moves = 0;
   let hits = 0;
   let showTimer = document.getElementById('tRemaining');
@@ -55,7 +56,7 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
       if (timer < 0) {
         clearInterval(countdownTimer);
         alert('¡Se acabó el tiempo!')
-        //blockCards(items);
+        flag = true;
         //loseAudio.play(); //Audio insertado
       }
 
@@ -64,14 +65,6 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
     let countdownTimer = setInterval(tRemaining, 1000, timer);
 
   }
-
-  /*function blockCards(items){
-    for(let i = 0; i<=doubledItems.length; i++){
-      let blockedCard = document.getElementById(i);
-      blockedCard.innerHTML = `<img src=".img/levels/lvl1/pokelvl1.png" alt="">` ; 
-      blockedCard.disabled = true;
-    }
-  }*/
 
   //Container y sus atributos
   const cardContainer = document.createElement('div');
@@ -100,6 +93,12 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
 
 
     card.addEventListener('click', (e) => {
+      
+      if (flag){
+        console.log("termino", flag)
+        return
+
+      }
       countTime()
       card.classList.toggle('flip'); //se indica clase flip
       checkCards(e); //al hacer click se activa el evento y se giran las cartas
@@ -107,6 +106,7 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
 
     //match de cartas
     const checkCards = (e) => {
+
 
       const clickedCard = e.target; //el click captura data, la que será el elemento target
       clickedCard.classList.add('flipped'); //se asigna clase para la comparación de cartas que se giran
@@ -133,6 +133,7 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
         //Alerta al terminar de jugar
         if (flip.length === doubledItems.length) {
           //clearInterval(countdownTimer)
+          timer = 0;
           alert('¡FELICITACIONES!')
         }
       }
