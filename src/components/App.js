@@ -51,7 +51,7 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
     }
     execute = true;
     function tRemaining() {
-      showTimer.innerHTML = `Tiempo restante: ${timer} segundos`;
+      showTimer.innerHTML = `Tiempo restante: <br> ${timer} segundos`;
       timer--;
       if (timer < 0) {
         clearInterval(countdownTimer);
