@@ -16,8 +16,14 @@
 
 body {
     background-image: url("img/game.png");
-    background-size: auto;
+    background-size: cover;
+    background-position: 0% 30%;
+    background-repeat: repeat;
     text-align: center;
+}
+
+h1 {
+    margin-top: 2%;
 }
 
 .image {
@@ -171,4 +177,8 @@ button:hover {
 
 #footer {
    font-family: sans-serif;
+   position: absolute;
+   bottom: 5%;
+   width: 99%;
+   height: 40px;
 }
