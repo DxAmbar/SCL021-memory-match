@@ -37,6 +37,6 @@ Para el desarrollo de esta aplicación, utilizamos solo VanillaJS, además de da
 
 Se consideró lo que quería el usuario, por lo que se implementó el algoritmo de Fisher-Yates para barajar las cartas al azar, implementación de temporizador, contador de acierto y movimientos. Además, se implementó una función para bloquear las cartas al terminar el juego o cuando se acabe el tiempo.
 
-Se puede acceder a esta aplicación mediante el siguiente link -poner link-
+Se puede acceder a esta aplicación mediante el siguiente [link](https://dxambar.github.io/SCL021-memory-match/ "link")
 
 Este juego fue desarrollado por Daniela Baeza y Cata García para Laboratoria, cohort SCL021, Agosto 2022.
