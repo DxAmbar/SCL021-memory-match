@@ -21,11 +21,16 @@ Se creó un prototipo de baja fidelidad con una lluvia de ideas de lo que podrí
 
 En el primer prototipo se tuvo en consideración interfaz de inicio, posibles popups, posición de cartas y de estadísticas. 
 
--aquí va imagen-
+![Prototipo baja fidelidad](https://i.ibb.co/82H6z1t/prototipo01.png "Prototipo baja fidelidad")
 
-Luego se hizo un prototipo interactivo de alta fidelidad, donde los usuarios pudieron acceder al juego en etapa de testeo y dieron su feedback, el cuál se tomó en cuenta para mejoras en el prototipo final. 
+Luego se hizo un prototipo interactivo de alta fidelidad, donde los usuarios pudieron acceder al juego en etapa de testeo.
 
--aquí va imagen 2- 
+![prototipo alta fidelidad](https://i.ibb.co/LPwcnCS/boceto.png "prototipo alta fidelidad")
+
+
+Cuando los usuarios interactuarion con el prototipo anterior dieron su feedback, el cuál se tomó en cuenta para mejoras en el prototipo final. 
+
+![prototipo final](https://i.ibb.co/VWrw00p/Captura02.png "prototipo final")
 
 ## Desarrollo del juego 
 Para el desarrollo de esta aplicación, utilizamos solo VanillaJS, además de dar forma y estilo con HTML & CSS. 

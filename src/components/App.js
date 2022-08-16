@@ -20,11 +20,6 @@ console.log(pokemon.items);
 const App = (items = pokemon.items) => { // Declaramos valor de items por si la constante no recibe el valor correcto
   const doubledItems = items.concat(items); // Se duplican las cartas de pokemon
 
-  // Variables  
-  /*let uncoveredCards = 0;
-  let time = false;
-  let pairs = 0;
-  let initTimer = 30;*/
   let timer = 30;
   let flag = false;
   let moves = 0;
