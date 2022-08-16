@@ -37,6 +37,7 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
     doubledItems[i] = temp; //se toma i para dar un valor temporal temp.
   }
 
+
   // Función timer  
   let execute = false
 
@@ -128,8 +129,8 @@ const App = (items = pokemon.items) => { // Declaramos valor de items por si la 
         //Alerta al terminar de jugar
         if (flip.length === doubledItems.length) {
           //clearInterval(countdownTimer)
-          timer = 0;
           alert('¡FELICITACIONES!')
+          flag = true;
         }
       }
 
