@@ -182,3 +182,9 @@ button:hover {
    width: 99%;
    height: 40px;
 }
+ /* al salir la alerta de win, deberia pausarse el timer
+
+ crear variable e tempo
+ al salir la alert de win
+agregamos un else en caso de que 
+cuando presionemos aceptar al ganar el juego debe reiniciarse y agregar el boton de reiniciar 
