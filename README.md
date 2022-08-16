@@ -30,7 +30,7 @@ Luego se hizo un prototipo interactivo de alta fidelidad, donde los usuarios pud
 
 Cuando los usuarios interactuarion con el prototipo anterior dieron su feedback, el cuál se tomó en cuenta para mejoras en el prototipo final. 
 
-![prototipo final](https://i.ibb.co/VWrw00p/Captura02.png "prototipo final")
+![final](https://i.ibb.co/Fq7GjsP/Captura03.png "final")
 
 ## Desarrollo del juego 
 Para el desarrollo de esta aplicación, utilizamos solo VanillaJS, además de dar forma y estilo con HTML & CSS. 
